@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Záměření — Plisé rolety</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app">
+  <h1>Záměření — Plisé rolety</h1>
+  <p class="sub">Vyplňte zakázku, přidejte rolety a stáhněte Excel.</p>
+
+  <div class="section">
+    <div class="stitle">Zakázka</div>
+    <div class="row2">
+      <div class="field"><label>Jméno klienta</label><input id="klient" placeholder="Novák Jan"></div>
+      <div class="field"><label>Číslo zakázky</label><input id="zakazka" placeholder="2026-001"></div>
+    </div>
+    <div class="row2">
+      <div class="field"><label>Adresa</label><input id="adresa" placeholder="Hlavní 1, Praha"></div>
+      <div class="field"><label>Datum záměření</label><input type="date" id="datum"></div>
+    </div>
+    <div class="field"><label>Technik</label><input id="technik" placeholder="Jméno technika"></div>
+  </div>
+
+  <div class="form-box">
+    <h2>Přidat plisé roletu</h2>
+    <div class="row2">
+      <div class="field"><label>Místnost</label><input id="f-mis" placeholder="např. Ložnice, Obývák"></div>
+      <div class="field"><label>Typ uchycení</label>
+        <select id="f-uch"><option value="">— vyberte —</option><option>Zasklívačka</option><option>Rám okna</option><option>Zavěšení na rám okna</option></select>
+      </div>
+    </div>
+    <div class="row3">
+      <div class="field"><label>Šířka (mm)</label><input type="number" id="f-s" placeholder="800" min="1"></div>
+      <div class="field"><label>Výška (mm)</label><input type="number" id="f-v" placeholder="1200" min="1"></div>
+      <div class="field"><label>Počet ks</label><input type="number" id="f-p" value="1" min="1"></div>
+    </div>
+    <div class="row2">
+      <div class="field"><label>Kód látky</label><input id="f-lat" placeholder="např. PL-301"></div>
+      <div class="field"><label>Barva profilu</label><input id="f-pro" placeholder="např. Bílá"></div>
+    </div>
+    <div class="row2">
+      <div class="field"><label>Barva vodící lišty (střešní)</label><input id="f-lis" placeholder="např. Bílá"></div>
+      <div class="field"><label>Ovládací tyč — délka (mm)</label><input type="number" id="f-tyc" placeholder="1000" min="1"></div>
+    </div>
+    <div class="note">m² se dopočítá automaticky z rozměrů</div>
+    <div class="field" style="margin-top:10px"><label>Poznámka</label><input id="f-poz" placeholder="Volitelná poznámka..."></div>
+    <button class="btn-add" id="btn-add">+ přidat roletu do zakázky</button>
+  </div>
+
+  <div class="section">
+    <div class="top-bar">
+      <div class="stitle" style="margin:0">Přidané rolety</div>
+      <span class="badge" id="badge">0 položek</span>
+    </div>
+    <div id="list"><div class="empty">Zatím žádná roleta.</div></div>
+  </div>
+
+  <button class="btn-exp" id="btn-exp" disabled>⬇ Stáhnout Excel (.xlsx)</button>
+</div>
+<script src="app.js"></script>
+</body>
+</html>
