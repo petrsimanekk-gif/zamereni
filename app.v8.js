@@ -373,7 +373,6 @@ document.getElementById('btn-pridat').addEventListener('click',function(){
 function plural(n){return n===1?'1 položka':n>=2&&n<=4?n+' položky':n+' položek';}
 let editingIdx=null;
 
-let editingIdx=null;
 
 function cardSummary(o){
   const parts=[];
