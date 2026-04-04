@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Záměření stínění</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app">
+  <h1>Záměření stínění</h1>
+  <p class="sub">Vyplňte zakázku, vyberte produkt a přidejte položky.</p>
+
+  <div class="section">
+    <div class="stitle">Zakázka</div>
+    <div class="row2">
+      <div class="field"><label>Jméno klienta</label><input id="klient" placeholder="Novák Jan"></div>
+      <div class="field"><label>Číslo zakázky</label><input id="zakazka" placeholder="2026-001"></div>
+    </div>
+    <div class="row2">
+      <div class="field"><label>Adresa</label><input id="adresa" placeholder="Hlavní 1, Praha"></div>
+      <div class="field"><label>Datum záměření</label><input type="date" id="datum"></div>
+    </div>
+    <div class="field"><label>Technik</label><input id="technik" placeholder="Jméno technika"></div>
+  </div>
+
+  <div class="section">
+    <div class="stitle">Typ produktu</div>
+    <div class="typ-grid" id="typ-grid">
+      <button class="typ-btn" data-kat="roleta" data-typ="stresni"><span class="typ-cat">Roleta</span>Látkové střešní rolety</button>
+      <button class="typ-btn" data-kat="roleta" data-typ="aluvegasdn"><span class="typ-cat">Roleta den a noc</span>Alu Vegas</button>
+      <button class="typ-btn" data-kat="roleta" data-typ="aluvegastx"><span class="typ-cat">Textilní roleta</span>Alu Classic</button>
+      <button class="typ-btn" data-kat="roleta" data-typ="maxidn"><span class="typ-cat">Roleta den a noc</span>Maxi kazeta</button>
+      <button class="typ-btn" data-kat="roleta" data-typ="maxitx"><span class="typ-cat">Textilní roleta</span>Maxi kazeta</button>
+      <button class="typ-btn" data-kat="roleta" data-typ="otevrenadn"><span class="typ-cat">Roleta den a noc</span>Otevřená kazeta</button>
+      <button class="typ-btn" data-kat="roleta" data-typ="otevrenatx"><span class="typ-cat">Textilní roleta</span>Otevřená kazeta</button>
+      <button class="typ-btn" data-kat="roleta" data-typ="polodn"><span class="typ-cat">Roleta den a noc</span>Polo kazeta</button>
+      <button class="typ-btn" data-kat="roleta" data-typ="polotx"><span class="typ-cat">Textilní roleta</span>Polo kazeta</button>
+      <button class="typ-btn" data-kat="roleta" data-typ="sonosdn"><span class="typ-cat">Roleta den a noc</span>SONO S</button>
+      <button class="typ-btn" data-kat="roleta" data-typ="sonostx"><span class="typ-cat">Textilní roleta</span>SONO S</button>
+      <button class="typ-btn" data-kat="roleta" data-typ="sonolldn"><span class="typ-cat">Roleta den a noc</span>SONO L</button>
+      <button class="typ-btn" data-kat="roleta" data-typ="sonolltx"><span class="typ-cat">Textilní roleta</span>SONO L</button>
+      <button class="typ-btn" data-kat="zaluzie" data-typ="horizont"><span class="typ-cat">Žaluzie</span>Horizontální žaluzie</button>
+      <button class="typ-btn" data-kat="zaluzie" data-typ="vertikal"><span class="typ-cat">Žaluzie</span>Vertikální žaluzie</button>
+      <button class="typ-btn" data-kat="plise" data-typ="plise"><span class="typ-cat">Plisé</span>Plisé roleta</button>
+      <button class="typ-btn" data-kat="sit" data-typ="sit_dverpant"><span class="typ-cat">Síť</span>Dveřní síť — pantová</button>
+      <button class="typ-btn" data-kat="sit" data-typ="sit_plise"><span class="typ-cat">Síť</span>Plisé síť proti hmyzu</button>
+      <button class="typ-btn" data-kat="sit" data-typ="sit_posuvram"><span class="typ-cat">Síť</span>Posuvná síť — v rámu</button>
+      <button class="typ-btn" data-kat="sit" data-typ="sit_posuvlist"><span class="typ-cat">Síť</span>Posuvná síť — v lištách</button>
+      <button class="typ-btn" data-kat="sit" data-typ="sit_pevna"><span class="typ-cat">Síť</span>Pevná okenní síť</button>
+      <button class="typ-btn" data-kat="sit" data-typ="sit_rolovaci"><span class="typ-cat">Síť</span>Rolovací síť</button>
+    </div>
+  </div>
+
+  <div class="form-box" id="form-box" style="display:none">
+    <div class="form-box-title" id="form-title"></div>
+    <div id="form-fields"></div>
+    <button class="btn-add" id="btn-pridat">+ přidat do zakázky</button>
+  </div>
+
+  <div class="section">
+    <div class="top-bar">
+      <div class="stitle" style="margin:0">Přidané položky</div>
+      <span class="badge" id="badge">0 položek</span>
+    </div>
+    <div id="list"><div class="empty">Zatím žádná položka.</div></div>
+  </div>
+
+  <button class="btn-exp" id="btn-exp" disabled>⬇ Stáhnout Excel (.xlsx)</button>
+  <button class="btn-reset" id="btn-reset">Nová zakázka (smazat vše)</button>
+</div>
+<script src="app.js"></script>
+</body>
+</html>
