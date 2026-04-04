@@ -13,7 +13,27 @@
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<div class="app">
+
+<!-- Přihlašovací obrazovka -->
+<div id="login-screen" style="display:none;min-height:100vh;align-items:center;justify-content:center;background:#f7f4f4">
+  <div style="background:#fff;border-radius:16px;padding:2.5rem 2rem;width:100%;max-width:360px;box-shadow:0 8px 32px rgba(100,0,0,.15);margin:1rem">
+    <div style="text-align:center;margin-bottom:1.75rem">
+      <img src="zaluzie-snadno-logo.svg" alt="Žaluzie snadno" style="height:38px;margin-bottom:1.25rem">
+      <div style="font-size:18px;font-weight:700;color:#1a1a1a;margin-bottom:4px">Záměření stínění</div>
+      <div style="font-size:13px;color:#999">Zadejte přístupové heslo</div>
+    </div>
+    <div style="margin-bottom:12px">
+      <input id="login-heslo" type="password" placeholder="Heslo" style="width:100%;padding:11px 14px;border:1.5px solid #e5e0e0;border-radius:8px;font-size:15px;outline:none;font-family:inherit">
+    </div>
+    <div id="login-err" style="display:none;font-size:12px;color:#cb1419;margin-bottom:10px;text-align:center;font-weight:600">Nesprávné heslo. Zkuste to znovu.</div>
+    <button id="btn-login" style="width:100%;padding:13px;background:linear-gradient(135deg,#8a0c10,#cb1419);color:#fff;border:none;border-radius:8px;font-size:15px;font-weight:700;cursor:pointer;font-family:inherit">Přihlásit se</button>
+    <div style="text-align:center;margin-top:1rem;font-size:11px;color:#bbb">Zapomněli jste heslo? Kontaktujte administrátora.</div>
+  </div>
+</div>
+
+<!-- Hlavní aplikace -->
+<div id="app" style="display:none">
+
   <div class="app-header">
     <div class="header-inner">
       <div>
@@ -96,6 +116,7 @@
   <button class="btn-pdf" id="btn-pdf" disabled>📄 Nabídka pro klienta (PDF)</button>
   <button class="btn-reset" id="btn-reset">Nová zakázka (smazat vše)</button>
 </div>
-<script src="app_v20.js"></script>
+</div><!-- konec #app -->
+<script src="app_v22.js"></script>
 </body>
 </html>
