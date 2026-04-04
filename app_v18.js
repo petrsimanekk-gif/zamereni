@@ -593,7 +593,7 @@ tbody td:last-child{text-align:center}
     <div class="sign-line">Podpis technika</div>
   </div>
 </div>
-<script>window.onload=function(){window.print();}<\/script>
+
 </body></html>`;
 
   const win=window.open('','_blank');
