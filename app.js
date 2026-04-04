@@ -355,21 +355,107 @@ document.getElementById('btn-pridat').addEventListener('click',function(){
   const REMEMBER=['ovladani','bprofilu','typ_latky','kod_latky','uchyceni','vedeni','boc_lista','spod_lista','vod_lista','vynaseci','mont_lprofil','bsitoviny','barva_box','typ_stah','provedeni','sirka_latky','kartacek','sitovina','typ_pantu','magnet','bsite','typ_site','prah','montaz','typ_montaze','typ_dorazu','brzda','profil','typ_profil'];
   const last={};prod.fields.forEach(f=>{if(REMEMBER.includes(f.id))last[f.id]=obj[f.id];});
   try{localStorage.setItem('last_'+activTyp,JSON.stringify(last));}catch(e){}
-  prod.fields.forEach(f=>{if(!REMEMBER.includes(f.id)){const el=document.getElementById('f_'+f.id);if(el)el.value=f.defaultVal||'';}});
+  if(editingIdx!==null){
+    // update existing item
+    items[editingIdx]=obj;
+    editingIdx=null;
+    var addBtn=document.getElementById('btn-pridat');
+    addBtn.textContent='+ přidat do zakázky';
+    addBtn.style.cssText='';
+  } else {
+    // clear non-remembered fields for next entry
+    prod.fields.forEach(f=>{if(!REMEMBER.includes(f.id)){const el=document.getElementById('f_'+f.id);if(el)el.value=f.defaultVal||'';}});
+  }
   saveState();renderList();
 });
 
 // ===================== RENDER LIST =====================
 function plural(n){return n===1?'1 položka':n>=2&&n<=4?n+' položky':n+' položek';}
+let editingIdx=null;
+
+let editingIdx=null;
+
+function cardSummary(o){
+  const parts=[];
+  if(o.sirka&&o.vyska) parts.push('Rozměr: '+o.sirka+' × '+o.vyska+' mm');
+  else if(o.sirkac&&o.vyskad) parts.push('Rozměr: '+o.sirkac+' × '+o.vyskad+' mm');
+  else if(o.sirkac&&o.vyskai) parts.push('Rozměr: '+o.sirkac+' × '+o.vyskai+' mm');
+  else if(o.sirka_kridla&&o.vyska_vod) parts.push('Křídlo: '+o.sirka_kridla+' × '+o.vyska_vod+' mm');
+  if(o.pocet&&+o.pocet>1) parts.push(o.pocet+' ks');
+  if(o.ovladani) parts.push('Ovl.: '+o.ovladani);
+  if(o.typ_latky) parts.push('Látka: '+o.typ_latky);
+  if(o.kod_latky) parts.push('Kód: '+o.kod_latky);
+  if(o.bprofilu) parts.push('Profil: '+o.bprofilu);
+  if(o.uchyceni) parts.push(o.uchyceni);
+  if(o.vedeni) parts.push('Vedení: '+o.vedeni);
+  if(o.vod_lista) parts.push('Lišta: '+o.vod_lista);
+  if(o.boc_lista) parts.push('Boč. lišta: '+o.boc_lista);
+  if(o.typ_pantu) parts.push(o.typ_pantu);
+  if(o.bsite) parts.push(o.bsite);
+  if(o.typ_lamely) parts.push('Lamela: '+o.typ_lamely);
+  if(o.barva_lamely) parts.push('Barva: '+o.barva_lamely);
+  if(o.typ) parts.push(o.typ);
+  if(o.profil) parts.push(o.profil);
+  if(o.typ_profil) parts.push(o.typ_profil);
+  if(o.bsitoviny) parts.push(o.bsitoviny);
+  if(o.poznamka) parts.push('Pozn.: '+o.poznamka);
+  return parts.join('  ·  ');
+}
+
 function renderList(){
   const list=document.getElementById('list');
   document.getElementById('badge').textContent=plural(items.length);
   document.getElementById('btn-exp').disabled=items.length===0;
   if(!items.length){list.innerHTML='<div class="empty">Zatím žádná položka.</div>';return;}
-  list.innerHTML=items.map((o,i)=>{const prod=PRODUCTS[o._typ];const label=prod?prod.label:o._typ;const meta=prod?prod.fields.slice(0,5).filter(f=>o[f.id]).map(f=>o[f.id]).join(' · '):'';return `<div class="card"><div><span class="card-typ">${label}</span><div class="card-name">${o.mis||'—'}</div><div class="card-meta">${meta}</div></div><button class="del" data-idx="${i}">✕</button></div>`;}).join('');
+  list.innerHTML=items.map((o,i)=>{
+    const prod=PRODUCTS[o._typ];
+    const label=prod?prod.label:o._typ;
+    const summary=cardSummary(o);
+    const isEditing=editingIdx===i;
+    return '<div class="card'+(isEditing?' card-editing':'')+'">'
+      +'<div style="flex:1;min-width:0">'
+      +'<span class="card-typ">'+label+'</span>'
+      +'<div class="card-name">'+(o.mis||'—')+'</div>'
+      +'<div class="card-meta">'+summary+'</div>'
+      +'</div>'
+      +'<div style="display:flex;gap:4px;flex-shrink:0;margin-left:8px;align-items:flex-start">'
+      +'<button class="edit-btn" data-edit="'+i+'" title="Upravit">✎</button>'
+      +'<button class="del" data-idx="'+i+'" title="Smazat">✕</button>'
+      +'</div></div>';
+  }).join('');
 }
-window.delItem=function(i){items.splice(i,1);saveState();renderList();};
-document.getElementById('list').addEventListener('click',function(e){var btn=e.target.closest('[data-idx]');if(btn){var idx=parseInt(btn.getAttribute('data-idx'));if(!isNaN(idx))delItem(idx);}});
+
+window.delItem=function(i){
+  if(editingIdx===i)editingIdx=null;
+  else if(editingIdx!==null&&editingIdx>i)editingIdx--;
+  items.splice(i,1);saveState();renderList();
+};
+
+function startEdit(i){
+  const o=items[i];
+  editingIdx=i;
+  document.querySelectorAll('.typ-btn').forEach(b=>b.classList.remove('active'));
+  var btn=document.querySelector('.typ-btn[data-typ="'+o._typ+'"]');
+  if(btn)btn.classList.add('active');
+  renderForm(o._typ);
+  var prod=PRODUCTS[o._typ];
+  prod.fields.forEach(function(f){
+    var el=document.getElementById('f_'+f.id);
+    if(el)el.value=o[f.id]||f.defaultVal||'';
+  });
+  var addBtn=document.getElementById('btn-pridat');
+  addBtn.textContent='✔ uložit změny';
+  addBtn.style.cssText='background:#185FA5;color:#fff;border:none;width:100%;padding:10px;border-radius:8px;font-size:13px;cursor:pointer;margin-top:4px';
+  document.getElementById('form-box').scrollIntoView({behavior:'smooth',block:'start'});
+  renderList();
+}
+
+document.getElementById('list').addEventListener('click',function(e){
+  var delBtn=e.target.closest('[data-idx]');
+  if(delBtn){var idx=parseInt(delBtn.getAttribute('data-idx'));if(!isNaN(idx))delItem(idx);return;}
+  var editBtn=e.target.closest('[data-edit]');
+  if(editBtn){var idx=parseInt(editBtn.getAttribute('data-edit'));if(!isNaN(idx))startEdit(idx);}
+});
 
 // ===================== TYP BUTTONS =====================
 document.querySelectorAll('.typ-btn').forEach(function(btn){btn.addEventListener('click',function(){document.querySelectorAll('.typ-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');renderForm(btn.dataset.typ);saveState();});});

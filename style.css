@@ -47,3 +47,6 @@ input.error{border-color:#e24b4a;background:#fff5f5}
 .subtyp-btn:hover{border-color:#378ADD;color:#185FA5}
 .subtyp-btn.active{border-color:#1a6eb5;background:#e6f1fb;color:#185FA5;font-weight:700}
 .sep{height:1px;background:#f0f0ee;margin:10px 0}
+.edit-btn{background:none;border:1px solid #ddd;color:#555;cursor:pointer;font-size:13px;padding:2px 7px;border-radius:6px;line-height:1.4}
+.edit-btn:hover{color:#185FA5;border-color:#185FA5;background:#f0f6ff}
+.card-editing{border-color:#185FA5!important;background:#f0f6ff}
