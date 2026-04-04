@@ -29,30 +29,43 @@
 
   <div class="section">
     <div class="stitle">Typ produktu</div>
-    <div class="typ-grid" id="typ-grid">
-      <button class="typ-btn" data-kat="roleta" data-typ="stresni"><span class="typ-cat">Roleta</span>Látkové střešní rolety</button>
-      <button class="typ-btn" data-kat="roleta" data-typ="aluvegasdn"><span class="typ-cat">Roleta den a noc</span>Alu Vegas</button>
-      <button class="typ-btn" data-kat="roleta" data-typ="aluvegastx"><span class="typ-cat">Textilní roleta</span>Alu Classic</button>
-      <button class="typ-btn" data-kat="roleta" data-typ="maxidn"><span class="typ-cat">Roleta den a noc</span>Maxi kazeta</button>
-      <button class="typ-btn" data-kat="roleta" data-typ="maxitx"><span class="typ-cat">Textilní roleta</span>Maxi kazeta</button>
-      <button class="typ-btn" data-kat="roleta" data-typ="otevrenadn"><span class="typ-cat">Roleta den a noc</span>Otevřená kazeta</button>
-      <button class="typ-btn" data-kat="roleta" data-typ="otevrenatx"><span class="typ-cat">Textilní roleta</span>Otevřená kazeta</button>
-      <button class="typ-btn" data-kat="roleta" data-typ="polodn"><span class="typ-cat">Roleta den a noc</span>Polo kazeta</button>
-      <button class="typ-btn" data-kat="roleta" data-typ="polotx"><span class="typ-cat">Textilní roleta</span>Polo kazeta</button>
-      <button class="typ-btn" data-kat="roleta" data-typ="sonosdn"><span class="typ-cat">Roleta den a noc</span>SONO S</button>
-      <button class="typ-btn" data-kat="roleta" data-typ="sonostx"><span class="typ-cat">Textilní roleta</span>SONO S</button>
-      <button class="typ-btn" data-kat="roleta" data-typ="sonolldn"><span class="typ-cat">Roleta den a noc</span>SONO L</button>
-      <button class="typ-btn" data-kat="roleta" data-typ="sonolltx"><span class="typ-cat">Textilní roleta</span>SONO L</button>
-      <button class="typ-btn" data-kat="zaluzie" data-typ="horizont"><span class="typ-cat">Žaluzie</span>Horizontální žaluzie</button>
-      <button class="typ-btn" data-kat="zaluzie" data-typ="vertikal"><span class="typ-cat">Žaluzie</span>Vertikální žaluzie</button>
-      <button class="typ-btn" data-kat="plise" data-typ="plise"><span class="typ-cat">Plisé</span>Plisé roleta</button>
-      <button class="typ-btn" data-kat="sit" data-typ="sit_dverpant"><span class="typ-cat">Síť</span>Dveřní síť — pantová</button>
-      <button class="typ-btn" data-kat="sit" data-typ="sit_plise"><span class="typ-cat">Síť</span>Plisé síť proti hmyzu</button>
-      <button class="typ-btn" data-kat="sit" data-typ="sit_posuvram"><span class="typ-cat">Síť</span>Posuvná síť — v rámu</button>
-      <button class="typ-btn" data-kat="sit" data-typ="sit_posuvlist"><span class="typ-cat">Síť</span>Posuvná síť — v lištách</button>
-      <button class="typ-btn" data-kat="sit" data-typ="sit_pevna"><span class="typ-cat">Síť</span>Pevná okenní síť</button>
-      <button class="typ-btn" data-kat="sit" data-typ="sit_rolovaci"><span class="typ-cat">Síť</span>Rolovací síť</button>
-    </div>
+    <select id="typ-select" style="font-size:15px;padding:10px;border-radius:10px;border:1px solid #ddd;width:100%;background:#fff;color:#1a1a1a">
+      <option value="">— vyberte typ produktu —</option>
+      <optgroup label="Látkové střešní rolety">
+        <option value="stresni">Látkové střešní rolety</option>
+      </optgroup>
+      <optgroup label="Rolety den a noc">
+        <option value="aluvegasdn">Den a noc — Alu Vegas</option>
+        <option value="maxidn">Den a noc — Maxi kazeta</option>
+        <option value="otevrenadn">Den a noc — Otevřená kazeta</option>
+        <option value="polodn">Den a noc — Polo kazeta</option>
+        <option value="sonosdn">Den a noc — SONO S</option>
+        <option value="sonolldn">Den a noc — SONO L</option>
+      </optgroup>
+      <optgroup label="Textilní rolety">
+        <option value="aluvegastx">Textilní — Alu Classic</option>
+        <option value="maxitx">Textilní — Maxi kazeta</option>
+        <option value="otevrenatx">Textilní — Otevřená kazeta</option>
+        <option value="polotx">Textilní — Polo kazeta</option>
+        <option value="sonostx">Textilní — SONO S</option>
+        <option value="sonolltx">Textilní — SONO L</option>
+      </optgroup>
+      <optgroup label="Plisé rolety">
+        <option value="plise">Plisé roleta</option>
+      </optgroup>
+      <optgroup label="Žaluzie">
+        <option value="horizont">Horizontální žaluzie</option>
+        <option value="vertikal">Vertikální žaluzie</option>
+      </optgroup>
+      <optgroup label="Sítě proti hmyzu">
+        <option value="sit_dverpant">Dveřní síť — pantová</option>
+        <option value="sit_plise">Plisé síť proti hmyzu</option>
+        <option value="sit_posuvram">Posuvná síť — v rámu</option>
+        <option value="sit_posuvlist">Posuvná síť — v lištách</option>
+        <option value="sit_pevna">Pevná okenní síť</option>
+        <option value="sit_rolovaci">Rolovací síť</option>
+      </optgroup>
+    </select>
   </div>
 
   <div class="form-box" id="form-box" style="display:none">
@@ -72,6 +85,6 @@
   <button class="btn-exp" id="btn-exp" disabled>⬇ Stáhnout Excel (.xlsx)</button>
   <button class="btn-reset" id="btn-reset">Nová zakázka (smazat vše)</button>
 </div>
-<script src="app.v11.js"></script>
+<script src="app.v12.js"></script>
 </body>
 </html>
