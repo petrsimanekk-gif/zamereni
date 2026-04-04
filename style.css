@@ -298,3 +298,21 @@ select {
 .subtyp-btn { padding: 7px 10px; border: 1px solid var(--border); border-radius: var(--radius-sm); background: var(--white); font-size: 12px; cursor: pointer; text-align: center; color: var(--text-mid); transition: all .15s; font-family: inherit; }
 .subtyp-btn:hover { border-color: var(--red-light); color: var(--red-dark); }
 .subtyp-btn.active { border-color: var(--red-main); background: var(--red-pale); color: var(--red-dark); font-weight: 700; }
+
+.btn-pdf {
+  width: 100%;
+  margin-top: 8px;
+  padding: 13px;
+  background: var(--white);
+  color: var(--red-main);
+  border: 2px solid var(--red-main);
+  border-radius: var(--radius-md);
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: inherit;
+  transition: background .15s, color .15s;
+  letter-spacing: .02em;
+}
+.btn-pdf:hover { background: var(--red-pale); }
+.btn-pdf:disabled { opacity: .35; cursor: not-allowed; }
